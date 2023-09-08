@@ -5,8 +5,11 @@ defmodule JustTravelWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/api", JustTravelWeb do
+  scope "/api" do
     pipe_through :api
+
+    forward "/graphql", Absinthe.Plug, schema: JustTravelWeb.Schema
+    forward "/graphiql", Absinthe.Plug.GraphiQL, schema: JustTravelWeb.Schema
   end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development

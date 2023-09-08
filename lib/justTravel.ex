@@ -1,9 +1,6 @@
 defmodule JustTravel do
-  @moduledoc """
-  JustTravel keeps the contexts that define your domain
-  and business logic.
+  alias JustTravel.Tickets
 
-  Contexts are also responsible for managing your data, regardless
-  if it comes from the database, an external API or others.
-  """
+  defdelegate create_ticket(params), to: Tickets.Create, as: :call
+  defdelegate get_ticket(id), to: Tickets.Get, as: :call
 end
